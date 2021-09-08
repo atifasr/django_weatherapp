@@ -1,0 +1,94 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/weather.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Weather</title>
+    
+</head>
+
+<body>
+    <div class="container-fluid">
+      <div class="row my-2">
+        <div class="col-md-4">
+          <div class="h3"><a href="{% url 'blog:index' %}" class="home">Weather app</a></div>
+        </div>
+      </div>
+        <div class="row justify-content-center">
+            <div class="col-8">
+               
+               <div class="row justify-content-center">
+                   <div class="col-md-4">
+                    
+                    <form action="{% url 'blog:fetch_weather' %}" method="GET" class="form-group">    
+                        <label for="city_name">city name</label>
+                        <input class="form-control" type="text" name="city" >
+                        <label for="city_name">country code</label>
+                        <input class="form-control" type="text" name="country_code" >
+                        <button type="submit" class="btn btn-secondary my-2">fetch</button>
+                    </form>
+                   </div>
+               </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        {% if data %}
+                        <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">{{data.city_name}}</h5>
+                              <p class="card-text descrip">{{data.description}}</p>
+                              <p class="card-text temp">{{data.temp}}&#8451;</p>
+                              <p class="card-text">Max Temp {{data.max_temp}}&#8451;</p>
+                              <p class="card-text">Min Temp {{data.min_temp}}&#8451;</p>
+                              <p class="card-text">Feels like {{data.feels_like}}&#8451;</p>
+                              <p class="card-text">Sunrise: <small>{{data.sunrise}}</small></p>
+                                <p class="card-text">Sunset: <small>{{data.sunset}}</small></p>
+                            </div>
+                            {% endif %}
+                            
+                            <!-- <div class="card-body">
+                              <a href="#" class="card-link left"><i class="fas fa-backward"></i></a>
+                              <a href="#" class="card-link right"> <i class="fas fa-forward"></i></a>
+                             
+                            </div> -->
+                          </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="display-3 text-center">Forecast</h1>
+        <div class="row forecast">
+          {% for value in forecast.forecast %}
+          <div class="col-lg-3 col-forecast my-3">
+            <div class="card forecast">
+              <div class="card-body">
+                <p class="card-text day">{{value.main.day}}</p>
+                <p class="small-text">{{value.main.date}}</p>
+                <p class="card-text descrip">{{value.weather.0.description}}</p>
+                <p class="card-text temp">{{value.main.temp}}&#8451;</p>
+                <p class="card-text">Max Temp - {{value.main.temp_max}}&#8451;</p>
+                <p class="card-text">Min Temp - {{value.main.temp_min}}&#8451;</p>
+                <p class="card-text">Feels like {{value.main.feels_like}}&#8451;</p>
+               
+                <p class="card-text">Sunrise: <small>{{forecast.city.sunrise}}</small></p>
+                <p class="card-text">Sunset: <small>{{forecast.city.sunset}}</small></p>
+               
+              </div>
+            </div>
+          </div>
+            {% endfor %}      
+          </div>
+         
+          </div>
+        
+      </div>
+      {% block scripts %}
+      <script src = "{% static 'js/weather.js' %}"></script>
+      {% endblock %}
+</body>
+</html>
