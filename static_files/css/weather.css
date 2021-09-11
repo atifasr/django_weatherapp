@@ -1,0 +1,109 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(51, 50, 50);
+    color: white;
+}
+
+.home{
+    text-decoration: none;
+    color: blanchedalmond;
+    font-size: xx-large;
+    background-color: rgb(82, 79, 74);
+    padding: 3%;
+    border-radius: 6%;
+    margin-top: 5%;
+}
+
+.home:hover{
+    color: burlywood;
+}
+.card{
+    width: 100%;
+    font-size: 150%;
+    background-color: rgb(119, 115, 119);
+    border-radius: 5%;
+    overflow: hidden;
+    opacity: 0.8;
+    transition: background-color .6s ease-out .2s, box-shadow .4s ease-out .2s;
+}
+
+.card:hover{
+    cursor: pointer;
+}
+.card-text{
+    margin-left: 10%;
+}
+.left{
+    text-decoration: none;
+    color: black;
+    margin-right: auto;
+    
+}
+.right{
+    text-decoration: none;
+    color: black;
+    margin-left: auto;
+}
+.temp{
+    color: orange;
+}
+
+.card-title{
+    font-size: 190%;
+    color:rgb(206, 195, 100);
+}
+.descrip{
+    text-transform: capitalize;
+}
+
+.col-forecas{
+    margin: auto;
+}
+
+.row.forecast{
+    /* border: 2px solid white; */
+    margin-bottom: 7%;
+}
+
+
+.card.forecast{
+    font-size: 100%;
+    width: 80%;
+    height: 100%;
+    padding: 2%;
+    margin: auto;
+    opacity: 0.89;
+}
+
+.row{
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+
+.day{
+    font-size: xx-large;
+    color: rgb(58, 57, 40);
+}
+
+.descrip{
+    font-size: x-large;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-link:hover{
+    color: inherit;
+}
+
+.card:hover{
+  
+    background-color: rgb(102, 95, 95);
+    box-shadow: 2px 2px 0 2px rgb(102, 95, 95) ;
+}
