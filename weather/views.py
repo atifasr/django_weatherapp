@@ -50,15 +50,6 @@ async def getcurrent_weather(city_name,country_code,key):
 
 
 
-# def serialize_data(obj,request=''):
-#     # print(obj['forecast'])
-#     for data in obj['forecast']:
-#         if data == 'main':
-#             data['main']['date'] = str(data['main']['date'])
-    
-#     print(type(obj['forecast'][0]['main']['date']))
-
-
 
 
 #view for fetching weather
@@ -75,7 +66,6 @@ def fetch_weather(request):
         
         current_weather  = asyncio.run(getcurrent_weather(city_name,country_code,key))
         forecast_weather  = asyncio.run(get_forecastweather(city_name,key))
-        print('response ',current_weather)
         keys = current_weather
         if keys!= None:
             data ={}
@@ -190,18 +180,14 @@ def weather_detail(request):
         filter_date = request.GET.get('date')
         data_context = None
         if filter_date:
-            print(filter_date)
+        
             for data in forecast_data['forecast']:
-                print(data['dt'])
                 if data['dt'] == filter_date:
                     data_context = data
                     break
-        print('Matched data ',data_context)
+      
         data ={}
         data['city'] = forecast_data['city']
         data['forecast'] = data_context
 
-        print(data)
-
-        # print('Result from thread ',result)
         return render(request,'weather/weather_detail.html',data)
