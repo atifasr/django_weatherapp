@@ -27,6 +27,11 @@ body{
     border-radius: 5%;
     overflow: hidden;
     opacity: 0.8;
+    transition: background-color .6s ease-out .2s, box-shadow .4s ease-out .2s;
+}
+
+.card:hover{
+    cursor: pointer;
 }
 .card-text{
     margin-left: 10%;
@@ -86,4 +91,19 @@ body{
 
 .descrip{
     font-size: x-large;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-link:hover{
+    color: inherit;
+}
+
+.card:hover{
+  
+    background-color: rgb(102, 95, 95);
+    box-shadow: 2px 2px 0 2px rgb(102, 95, 95) ;
 }

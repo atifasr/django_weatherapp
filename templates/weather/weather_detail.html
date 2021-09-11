@@ -1,0 +1,33 @@
+{% extends "weather/base.html" %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+
+
+{% block content %}
+
+<div class="row justify-content-center">
+<div class="col-md-8">
+    <div class="card">
+        <div class="card-header">
+            <small>{{forecast.main.day}}</small>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{city.name}} </h5>
+            <p class="card-text"> population {{city.population}}</p>
+            <p class="card-text">Sunrise : {{city.sunrise}}</p>
+            <p class="card-text">Sunset : {{city.sunset}}</p>
+            <p class="card-text">Max temp : {{forecast.main.temp_max}} </p>
+            <p class="card-text">Temp : {{forecast.main.temp}} </p>
+            <p class="card-text">Min temp : {{forecast.main.temp_min}} </p>
+             <p class="card-text"><b><i>rain scheduled</i>: {{forecast.rain.3h}}</b></p>
+        </div>
+        
+    </div>
+</div>    
+
+</div>
+
+
+{% endblock %}

@@ -20,9 +20,15 @@
           <div class="h3"><a href="{% url 'blog:index' %}" class="home">Weather app</a></div>
         </div>
       </div>
+      {% block content %}
         <div class="row justify-content-center">
             <div class="col-8">
-               
+              {% if messages %}    
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+                              
                <div class="row justify-content-center">
                    <div class="col-md-4">
                     
@@ -38,9 +44,11 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         {% if data %}
+                        <a href="{% url 'blog:weather_detail' %}?date={{data.date}}" class="card-link" data-detail="main_card">
                         <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title">{{data.city_name}}</h5>
+                              <h5 class="card-title">{{data.city_name}} <span></span> </h5>
+                             
                               <p class="card-text descrip">{{data.description}}</p>
                               <p class="card-text temp">{{data.temp}}&#8451;</p>
                               <p class="card-text">Max Temp {{data.max_temp}}&#8451;</p>
@@ -48,23 +56,21 @@
                               <p class="card-text">Feels like {{data.feels_like}}&#8451;</p>
                               <p class="card-text">Sunrise: <small>{{data.sunrise}}</small></p>
                                 <p class="card-text">Sunset: <small>{{data.sunset}}</small></p>
-                            </div>
-                            {% endif %}
-                            
-                            <!-- <div class="card-body">
-                              <a href="#" class="card-link left"><i class="fas fa-backward"></i></a>
-                              <a href="#" class="card-link right"> <i class="fas fa-forward"></i></a>
-                             
-                            </div> -->
-                          </div>                       
+                            </div> 
+                          </div>  
+                        </a>
+                          {% endif %}                     
                     </div>
                 </div>
             </div>
         </div>
+        {% if forecast %}
         <h1 class="display-3 text-center">Forecast</h1>
+        {% endif %}
         <div class="row forecast">
           {% for value in forecast.forecast %}
           <div class="col-lg-3 col-forecast my-3">
+            <a href="{% url 'blog:weather_detail' %}?date={{value.dt}}" class="card-link">
             <div class="card forecast">
               <div class="card-body">
                 <p class="card-text day">{{value.main.day}}</p>
@@ -80,10 +86,11 @@
                
               </div>
             </div>
+          </a>
           </div>
             {% endfor %}      
           </div>
-         
+         {% endblock %}
           </div>
         
       </div>
